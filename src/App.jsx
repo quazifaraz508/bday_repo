@@ -19,6 +19,31 @@ import group_1 from './assets/images/group_1.jpeg';
 import group2 from './assets/images/group2.jpeg';
 
 
+const CornerFlowers = () => (
+  <svg className="frame-decoration top-left" viewBox="0 0 100 100" width="120" height="120">
+    <path d="M20,20 Q30,5 50,20 T80,20" fill="none" stroke="#d4af37" strokeWidth="2" />
+    <circle cx="20" cy="20" r="5" fill="#c06c84" />
+    <circle cx="50" cy="20" r="3" fill="#f8b195" />
+    <circle cx="80" cy="20" r="4" fill="#c06c84" />
+    <path d="M20,20 Q5,30 20,50 T20,80" fill="none" stroke="#d4af37" strokeWidth="2" />
+    <circle cx="20" cy="50" r="3" fill="#f8b195" />
+    <circle cx="20" cy="80" r="4" fill="#c06c84" />
+    <path d="M20,20 C40,40 60,10 80,40" fill="none" stroke="rgba(212,175,55,0.5)" strokeWidth="1" />
+  </svg>
+);
+
+const BottomVines = () => (
+  <svg className="frame-decoration bottom-right" viewBox="0 0 100 100" width="120" height="120">
+    <path d="M80,80 Q70,95 50,80 T20,80" fill="none" stroke="#d4af37" strokeWidth="2" />
+    <circle cx="80" cy="80" r="5" fill="#c06c84" />
+    <circle cx="50" cy="80" r="3" fill="#f8b195" />
+    <circle cx="20" cy="80" r="4" fill="#c06c84" />
+    <path d="M80,80 Q95,70 80,50 T80,20" fill="none" stroke="#d4af37" strokeWidth="2" />
+    <circle cx="80" cy="50" r="3" fill="#f8b195" />
+    <circle cx="80" cy="20" r="4" fill="#c06c84" />
+  </svg>
+);
+
 const SwipeableGalleryItem = ({ images, title, text, onExpand }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -33,24 +58,28 @@ const SwipeableGalleryItem = ({ images, title, text, onExpand }) => {
   };
 
   return (
-    <div className="gallery-item" onClick={() => onExpand && onExpand(images[currentIndex])}>
-      <img src={images[currentIndex]} alt={title} loading="lazy" />
-      <div className="gallery-overlay">
-        <h3>{title}</h3>
-        <p>{text}</p>
-      </div>
+    <div className="gallery-item-wrapper" onClick={() => onExpand && onExpand(images[currentIndex])}>
+      <CornerFlowers />
+      <BottomVines />
+      <div className="gallery-item">
+        <img src={images[currentIndex]} alt={title} loading="lazy" />
+        <div className="gallery-overlay">
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </div>
 
-      {images.length > 1 && (
-        <>
-          <button className="swipe-arrow left" onClick={prevImage}>&#8249;</button>
-          <button className="swipe-arrow right" onClick={nextImage}>&#8250;</button>
-          <div className="swipe-dots">
-            {images.map((_, idx) => (
-              <span key={idx} className={`dot ${idx === currentIndex ? 'active' : ''}`}></span>
-            ))}
-          </div>
-        </>
-      )}
+        {images.length > 1 && (
+          <>
+            <button className="swipe-arrow left" onClick={prevImage}>&#8249;</button>
+            <button className="swipe-arrow right" onClick={nextImage}>&#8250;</button>
+            <div className="swipe-dots">
+              {images.map((_, idx) => (
+                <span key={idx} className={`dot ${idx === currentIndex ? 'active' : ''}`}></span>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };

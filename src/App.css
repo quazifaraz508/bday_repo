@@ -1594,3 +1594,73 @@ input[type="text"]:focus {
     transform: scale(1);
   }
 }
+
+/* --- Gallery Item Decorations --- */
+.gallery-item-wrapper {
+  position: relative;
+  /* Ensure wrapper takes space but allows absolute decorations outside if needed */
+  padding: 10px;
+  /* Optional: give space for decorations if they overlap inwards */
+}
+
+/* Ensure original gallery item fits and retains its logic */
+.gallery-item-wrapper .gallery-item {
+  height: 350px;
+  /* Match original height */
+  width: 100%;
+}
+
+.frame-decoration {
+  position: absolute;
+  z-index: 20;
+  /* Above image */
+  pointer-events: none;
+  /* Don't block clicking */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  opacity: 0.9;
+}
+
+.frame-decoration.top-left {
+  top: -15px;
+  left: -15px;
+  transform-origin: top left;
+  animation: sway-left 4s ease-in-out infinite alternate;
+}
+
+.frame-decoration.bottom-right {
+  bottom: -15px;
+  right: -15px;
+  transform-origin: bottom right;
+  animation: sway-right 5s ease-in-out infinite alternate;
+}
+
+@keyframes sway-left {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes sway-right {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-5deg);
+  }
+}
+
+/* Enhance hover effect to interact with decorations */
+.gallery-item-wrapper:hover .frame-decoration.top-left {
+  transform: rotate(10deg) scale(1.1);
+  transition: transform 0.4s ease;
+}
+
+.gallery-item-wrapper:hover .frame-decoration.bottom-right {
+  transform: rotate(-10deg) scale(1.1);
+  transition: transform 0.4s ease;
+}
