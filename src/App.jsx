@@ -670,7 +670,7 @@ function App() {
         {/* Wish Jar */}
         <section className="wish-section scroll-reveal">
           <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: '2rem', color: 'var(--accent-rose)' }}>Make a Wish</h3>
-          <p style={{ color: '#666', marginTop: '10px' }}>Type a wish for this year, and send it to the stars.</p>
+          <p style={{ color: '#666', marginTop: '10px' }}>Type a wish for this year, and send it to the Allah(SWT).</p>
           <div className="wish-input-container">
             <input
               type="text"
